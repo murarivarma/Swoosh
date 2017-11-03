@@ -9,11 +9,13 @@
 import UIKit
 
 class SkillVC: UIViewController {
+    
+    var playerObject: Player!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        print(playerObject.desiredLeague)
     }
 
     override func didReceiveMemoryWarning() {

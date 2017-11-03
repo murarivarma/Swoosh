@@ -9,11 +9,15 @@
 import UIKit
 
 class LeagueVC: UIViewController {
-
+    
+    @IBOutlet weak var nextButton: BorderButton!
+    var playerObj: Player!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        playerObj = Player()
+        nextButton.isEnabled = false;
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,6 +27,31 @@ class LeagueVC: UIViewController {
     
     @IBAction func nextButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "leagueToSkillSegue", sender: self)
+    }
+    
+    @IBAction func mensButtonTapped(_ sender: Any) {
+        selectLeague(leagueType: "mens")
+    }
+    
+    
+    @IBAction func womensButtonTapped(_ sender: Any) {
+        selectLeague(leagueType: "womens")
+    }
+    
+    
+    @IBAction func coedButtonTapped(_ sender: Any) {
+        selectLeague(leagueType: "coed")
+    }
+    
+    func selectLeague(leagueType: String) {
+        playerObj.desiredLeague = leagueType
+        nextButton.isEnabled = true;
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let skillVC = segue.destination as? SkillVC {
+            skillVC.playerObject = playerObj
+        }
     }
     
     /*
